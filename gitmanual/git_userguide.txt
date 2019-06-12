@@ -18,3 +18,10 @@
 	3.3-> git reset --hard /*This commond will clean your comment,created file/directory....everuthing,*/
 	3.4-> git clean --fd /Remove untracked directories in addition to untracked files. If an untracked directory is managed by a different Git repository, it is not removed by default./
 
+4-> Pushing the commit on git server without userID/passwd
+	4.1-> https://github.com/Cyrus008/DeviceDriver.git {This is clone URL}
+	4.2-> git remote set-url origin git://github.com:Cyrus008/DeviceDriver.git {That need set to disable user id and password}
+	4.3-> ssh-keygen -t rsa -b 4096 -C "your_email@example.com" /*Generating a new SSH key make it default*/
+	4.4-> eval "$(ssh-agent -s)"
+	4.5-> ssh-add ~/.ssh/id_rsa
+	4.6-> Add the SSH key to your GitHub account
