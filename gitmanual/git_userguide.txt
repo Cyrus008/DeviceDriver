@@ -1,0 +1,16 @@
+				++++++++++++++++			
+				Git user Guide :
+				++++++++++++++++
+1->Setting your user id , email address for a single repository :
+
+	1.1-> git config user.email "email@example.com"
+	      ex. git config user.email "embedded.corelinux@gmail.com" //This will set your user id for single repo
+        1.2->  git config user.email "embedded.corelinux"
+	1.3->  git config --list    //This will show you all configure list for repo
+2->Git Add ,commit and other commond 
+	
+	2.1-> git add . /*This will add all files changes in the directory*/
+        2.2-> git add <Path of file> /This will add single/multiple file in git repo/
+	2.3-> git commit -m "commit message"
+
+
