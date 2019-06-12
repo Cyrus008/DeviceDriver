@@ -15,4 +15,6 @@
 3-> Status checking,reset,hardrest,clean example
 	3.1-> git status   /This commond will tell your status about your commt/
 	3.2-> git log      /*This will show you all commit that commited by and other*/
+	3.3-> git reset --hard /*This commond will clean your comment,created file/directory....everuthing,*/
+	3.4-> git clean --fd /Remove untracked directories in addition to untracked files. If an untracked directory is managed by a different Git repository, it is not removed by default./
 
