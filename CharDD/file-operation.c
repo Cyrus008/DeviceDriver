@@ -1,7 +1,11 @@
 /*This sample programe demonstrate the simple file operation when the module is inserted into the kernel .It just print the read/open/write/close statment
-   The all openration is done via the classical old method if can used this or adop new method  
+   The all openration is done via the classical old method if can used this or adop new method.This method only create entry in /proc/devices but did't make any entry
+   in the /dev .For that we need to do manuall given bellow :
+   Step 01:  grep -nr "<device_name in module>" /proc/devices
+   Step 02:  mknod /dev/Raspberry_xxxx c <Major Number> <Minor>
+   Step 03:  echo 1 > /dev/Raspberry_xxxx c
+   Step 04: dmesg {This will show all operation} 
  * */
-
 
 #include<linux/init.h>
 #include <linux/module.h>
