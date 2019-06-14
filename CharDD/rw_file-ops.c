@@ -1,5 +1,4 @@
-/* This sample programe demonstrate the simple file operation when the module is inserted into the kernel .It just print the read/open/write/close statment.The all openration is done via the classical old method if can used this or adop 
- * new method.This method only create entry in /proc/devices but did't make any entry in the /dev .For that we need to do manuall given bellow :
+/* This sample programe demonstrate the simple file operation when the module is inserted into the kernel .It just print the read/      open/write/close statment.The all openration is done via the classical old method if can used this or adop new method.This method    only create entry in /proc/devices but did't make any entry in the /dev .For that we need to do manuall given bellow :
 
    Step 01:  grep -nr "<device_name in module>" /proc/devices
    Step 02:  mknod /dev/Raspberry_xxxx c <Major Number> <Minor>
@@ -9,8 +8,6 @@
    Usefull Funtion name:
    1->: alloc_chrdev_region(dev_t *dev, unsigned int firstminor,unsigned int count, char *name);
  * */
-
-
 #include <linux/cdev.h>
 #include <linux/device.h>
 #include <linux/fs.h>
@@ -18,12 +15,16 @@
 #include <linux/kdev_t.h>
 #include <linux/kernel.h>
 #include <linux/module.h>
+#include <linux/slab.h>   //This header is used to declared for kmalloc
+#include <linux/uaccess.h> //This is used for copy_to_usr/copy_from_usr
 #define DEVICE_NAME "parth_maurya"
+#define mem_size     1024
 
 MODULE_LICENSE("Dual BSD/GPL");
 
 dev_t dev = 0;
 int device_num;
+uint8_t *kernel_buffer;
 
 struct cdev pcdev;
 struct class *pclass;
@@ -45,25 +46,34 @@ static struct file_operations fops =
 
 static int device_open(struct inode *inode, struct file *file)
 {
-    printk(KERN_INFO "Device is open function is called....$$$ :");
+    kernel_buffer = kmalloc(mem_size, GFP_KERNEL); /*kmalloc is the normal method of allocating memory */
+    if(kernel_buffer == 0){
+        printk(KERN_INFO "Cannot allocate memory in kernel....\n");
+        return -1;
+    }
+        
+    printk(KERN_INFO "Device file is opend ......\n :");
     return 0;
 }
 
 static ssize_t device_read(struct file *file, char __user *buff, size_t len, loff_t *ppos)
 {
-    printk(KERN_INFO "Device is read funtion called....$$$");
-    return 0;
+    copy_to_user(buff,kernel_buffer,mem_size);
+    printk(KERN_INFO "Data Read done from user space to device\n");
+    return mem_size;
 }
 
 static ssize_t device_write(struct file *file, const char __user *buff, size_t len , loff_t *ppos)
 {
-    printk(KERN_INFO "Device write function called......$$$");
+    copy_from_user(kernel_buffer,buff,len);
+    printk(KERN_INFO "Data write  done from device to user space\n");
     return len;
 }
 
 static int device_release(struct inode *inode, struct file * file)
 {
-    printk(KERN_INFO "Device release function called......$$$:");
+    kfree(kernel_buffer);
+    printk(KERN_INFO "Device release ......$$$:");
     return 0;
 }
 
@@ -109,8 +119,3 @@ static void device_exit(void)
 
 module_init(device_init);
 module_exit(device_exit);
-
-MODULE_LICENSE("Dual BSD/GPL");
-MODULE_AUTHOR("PRAMOD MAURYA");
-MODULE_DESCRIPTION("A simple open/read/write/close operation example");
-MODULE_VERSION("1.1");
