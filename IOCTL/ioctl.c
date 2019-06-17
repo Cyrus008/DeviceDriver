@@ -90,7 +90,75 @@ Choosing the ioctl Commands:
 	  	2-> _IOR(type,nr,datatype) (for reading data from the driver)
 	  	3-> _IOW(type,nr,datatype) (for writing data) 
 	  	4-> _IOWR(type,nr,datatype) (for bidirectional transfers).
+	
+	
+	       	Here is how some ioctl commands are defined in scull. In particular, these commands set and get the driver’s configurable parameters.
+
+
+		#define SCULL_IOC_MAGIC 'k'   /* Here we used 'k' as magic number */
+	 	#define SCULL_IOCRESET	_IO(SCULL_IOC_MAGIC, 0)  /* Please use a different 8-bit number in your code */
+
+	 	/*	* Here is some short name of the operation
+			* S means "Set" through a ptr,
+			* T means "Tell" directly with the argument value
+			* G means "Get": reply by setting through a pointer
+			* Q means "Query": response is on the return value
+			* X means "eXchange": switch G and S atomically
+			* H means "sHift": switch T and Q atomically
+		*/
+
+
+	 	#define SCULL_IOCSQUANTUM 	_IOW(SCULL_IOC_MAGIC, 1, int)
+		#define SCULL_IOCSQSET		_IOW(SCULL_IOC_MAGIC, 2, int)
+	        #define SCULL_IOCTQUANTUM       _IO(SCULL_IOC_MAGIC,3)
+		#define SCULL_IOCTQSET          _IO(SCULL_IOC_MAGIC,4)
+		#define SCULL_IOCGQUANTUM       _IOR(SCULL_IOC_MAGIC, 5,int)	
+		#define SCULL_IOCGQSET          _IOR(SCULL_IOC_MAGIC, 6,int)
+		#define SCULL_IOCQQUANTUM       _IO(SCULL_IOC_MAGIC,7)
+		#define SCULL_IOCQQSET          _IO(SCULL_IOC_MAGIC,8)
+		#define SCULL_IOCXQUANTUM       _IORW(SCULL_IOC_MAGIC, 9,int)
+		#define SCULL_IOCXQSET		_IORW(SCULL_IOC_MAGIC, 10,int)
+		#define SCULL_IOCHQUANTUM	_IO(SCULL_IOC_MAGIC,11)
+		#define SCULL_IOCHQSET		 _IO(SCULL_IOC_MAGIC,12)
+
+
+		
+		We chose to implement both ways of passing integer arguments: by pointer and by explicit value,Similarly, both ways are used to return an integer number: 
+		by pointer or by setting the return value.This works as long as the return value is a positive integer(as we saw for read and write), while a negative value is considered an
+	       	error and is used to set errno in user space. 
+
+ Using the ioctl Argument:
+ ========================
+		The ioctl code for the scull driver uses the extra argument.If it is an integer, it’s easy: it can be used directly. If it is a pointer, however, some care must be taken.
+		When a pointer is used to refer to user space, we must ensure that the user address is validi. An attempt to access an unverified user-supplied pointer can lead to incorrect
+		behavior, a kernel oops, system corruption, or security problems.It is the driver’s responsibility to make proper checks on every user-space address it uses and to
+		return an error if it is invalid.We will used copy_from_user and copy_to_user functions, which can be used to safely move data to and from user space.
+
+		Those functions can be used in ioctl methods as well, but ioctl calls often involve small data items that can be more efficiently manipulated through other means.
+		To start, address verification is implemented by the function access_ok, which is declared in <asm/uaccess.h>:
+
+			int access_ok(int type, const void *addr, unsigned long size);
+
+		Argument Exaplain :
+
+			1-> type : This should be either VERIFY_READ or VERIFY_WRITE , depending on whether the action to be performed is reading the user-space memory area or writing .
+			2-> addr : The addr argument holds a user-space address,it.
+			3-> size : The size is a byte count.
+		
+		
+		Theaccess_ok returns a boolean value: 1 for success (access is OK) and 0 for failure (access is not OK). If it returns false, the driver should usually return -EFAULT to the 
+		caller.If ioctl,for instance, needs to read an integer value from user space, size is sizeof(int) . If you need to both read and write at the given address, use VERIFY_WRITE ,
+	       	since it is a superset of VERIFY_READ .
+
+		In teresting face  about access_ok :
+		====================================
+
+		1->Access_ok not do the complete job of verifying memory access; it only checks to see that the memory reference is in a region of memory that the process might reasonably have
+	           access to.
+		2->The access_ok ensures that the address does not point to kernel-space memory.
+		3->Second, most driver code need not actually call access_ok. The memory-access routines described later take care of that for you
 
 
 
-       
+
+
