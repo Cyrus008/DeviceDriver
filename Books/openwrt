@@ -1,0 +1,144 @@
+qemu-system-mipsel: warning: vlan 0 is not connected to host network
+[    0.000000] Linux version 4.19.69 (p8@pramod) (gcc version 7.4.0 (OpenWrt GCC 7.4.0 r10944-e68c1cebd1)) #0 SMP Wed Sep 4 04:37:17 2019
+[    0.000000] earlycon: uart8250 at I/O port 0x3f8 (options '38400n8')
+[    0.000000] bootconsole [uart8250] enabled
+[    0.000000] CPU0 revision is: 00019300 (MIPS 24Kc)
+[    0.000000] FPU revision is: 00739300
+[    0.000000] MIPS: machine is mti,malta
+[    0.000000] Software DMA cache coherency enabled
+[    0.000000] Determined physical RAM map:
+[    0.000000]  memory: 08000000 @ 00000000 (usable)
+[    0.000000] Initrd not found or empty - disabling initrd
+[    0.000000] Primary instruction cache 2kB, VIPT, 2-way, linesize 16 bytes.
+[    0.000000] Primary data cache 2kB, 2-way, VIPT, no aliases, linesize 16 bytes
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem 0x0000000000000000-0x0000000000ffffff]
+[    0.000000]   Normal   [mem 0x0000000001000000-0x0000000007ffffff]
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000000000000-0x0000000007ffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000000000000-0x0000000007ffffff]
+[    0.000000] random: get_random_bytes called from start_kernel+0x98/0x4d8 with crng_init=0
+[    0.000000] percpu: Embedded 16 pages/cpu s33872 r8192 d23472 u65536
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 32480
+[    0.000000] Kernel command line: root=/dev/sda console=ttyS0
+[    0.000000] Dentry cache hash table entries: 16384 (order: 4, 65536 bytes)
+[    0.000000] Inode-cache hash table entries: 8192 (order: 3, 32768 bytes)
+[    0.000000] Writing ErrCtl register=00000000
+[    0.000000] Readback ErrCtl register=00000000
+[    0.000000] Memory: 115428K/131072K available (5516K kernel code, 219K rwdata, 1140K rodata, 6172K init, 217K bss, 15644K reserved, 0K cma-reserved)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] rcu: Hierarchical RCU implementation.
+[    0.000000] rcu: 	RCU restricting CPUs from NR_CPUS=2 to nr_cpu_ids=1.
+[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=1
+[    0.000000] NR_IRQS: 256
+[    0.000000] CPU frequency 200.00 MHz
+[    0.000000] clocksource: MIPS: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112644219 ns
+[    0.000117] sched_clock: 32 bits at 99MHz, resolution 10ns, wraps every 21474881530ns
+[    0.002374] Console: colour dummy device 80x25
+[    0.003414] Calibrating delay loop... 1404.10 BogoMIPS (lpj=7020544)
+[    0.151675] pid_max: default: 32768 minimum: 301
+[    0.152520] Mount-cache hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.152783] Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.169546] rcu: Hierarchical SRCU implementation.
+[    0.175196] smp: Bringing up secondary CPUs ...
+[    0.175453] smp: Brought up 1 node, 1 CPU
+[    0.182723] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[    0.183168] futex hash table entries: 256 (order: 2, 16384 bytes)
+[    0.187413] NET: Registered protocol family 16
+[    0.224300] SCSI subsystem initialized
+[    0.226542] PCI host bridge to bus 0000:00
+[    0.226970] pci_bus 0000:00: root bus resource [mem 0x10000000-0x17ffffff]
+[    0.227249] pci_bus 0000:00: root bus resource [io  0x1000-0x1fffff]
+[    0.227481] pci_bus 0000:00: root bus resource [??? 0x00000000 flags 0x0]
+[    0.227692] pci_bus 0000:00: No busn resource found for root bus, will use [bus 00-ff]
+[    0.228974] pci 0000:00:00.0: [Firmware Bug]: reg 0x14: invalid BAR (can't size)
+[    0.229232] pci 0000:00:00.0: [Firmware Bug]: reg 0x18: invalid BAR (can't size)
+[    0.229424] pci 0000:00:00.0: [Firmware Bug]: reg 0x1c: invalid BAR (can't size)
+[    0.229616] pci 0000:00:00.0: [Firmware Bug]: reg 0x20: invalid BAR (can't size)
+[    0.229816] pci 0000:00:00.0: [Firmware Bug]: reg 0x24: invalid BAR (can't size)
+[    0.231471] pci 0000:00:0a.1: legacy IDE quirk: reg 0x10: [io  0x01f0-0x01f7]
+[    0.231674] pci 0000:00:0a.1: legacy IDE quirk: reg 0x14: [io  0x03f6]
+[    0.231861] pci 0000:00:0a.1: legacy IDE quirk: reg 0x18: [io  0x0170-0x0177]
+[    0.232055] pci 0000:00:0a.1: legacy IDE quirk: reg 0x1c: [io  0x0376]
+[    0.232953] pci 0000:00:0a.3: quirk: [io  0x1000-0x103f] claimed by PIIX4 ACPI
+[    0.233185] pci 0000:00:0a.3: quirk: [io  0x1100-0x110f] claimed by PIIX4 SMB
+[    0.235548] pci 0000:00:13.0: BAR 0: assigned [mem 0x10000000-0x11ffffff pref]
+[    0.235919] pci 0000:00:0b.0: BAR 6: assigned [mem 0x12000000-0x1207ffff pref]
+[    0.236161] pci 0000:00:12.0: BAR 6: assigned [mem 0x12080000-0x120fffff pref]
+[    0.236351] pci 0000:00:13.0: BAR 6: assigned [mem 0x12100000-0x1210ffff pref]
+[    0.236541] pci 0000:00:13.0: BAR 1: assigned [mem 0x12110000-0x12110fff]
+[    0.236745] pci 0000:00:0a.2: BAR 4: assigned [io  0x1040-0x105f]
+[    0.236920] pci 0000:00:0b.0: BAR 0: assigned [io  0x1060-0x107f]
+[    0.237090] pci 0000:00:0b.0: BAR 1: assigned [mem 0x12111000-0x1211101f]
+[    0.237321] pci 0000:00:12.0: BAR 0: assigned [io  0x1080-0x109f]
+[    0.237489] pci 0000:00:12.0: BAR 1: assigned [mem 0x12111020-0x1211103f]
+[    0.237669] pci 0000:00:0a.1: BAR 4: assigned [io  0x10a0-0x10af]
+[    0.245886] clocksource: Switched to clocksource MIPS
+[    0.246558] VFS: Disk quotas dquot_6.6.0
+[    0.246846] VFS: Dquot-cache hash table entries: 1024 (order 0, 4096 bytes)
+[    0.253017] NET: Registered protocol family 2
+[    0.256227] tcp_listen_portaddr_hash hash table entries: 512 (order: 0, 6144 bytes)
+[    0.256531] TCP established hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.256810] TCP bind hash table entries: 1024 (order: 1, 8192 bytes)
+[    0.257051] TCP: Hash tables configured (established 1024 bind 1024)
+[    0.258205] UDP hash table entries: 256 (order: 1, 8192 bytes)
+[    0.258497] UDP-Lite hash table entries: 256 (order: 1, 8192 bytes)
+[    0.259607] NET: Registered protocol family 1
+[    0.362082] Crashlog allocated RAM at address 0x3f00000
+[    0.366725] workingset: timestamp_bits=14 max_order=15 bucket_order=1
+[    0.372961] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.373458] jffs2: version 2.2 (NAND) (SUMMARY) (LZMA) (RTIME) (CMODE_PRIORITY) (c) 2001-2006 Red Hat, Inc.
+[    0.389119] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 253)
+[    0.389450] io scheduler noop registered
+[    0.389604] io scheduler deadline registered (default)
+[    0.414636] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+[    0.416992] console [ttyS0] disabled
+[    0.438844] serial8250.0: ttyS0 at I/O 0x3f8 (irq = 4, base_baud = 115200) is a 16550A
+[    0.439741] console [ttyS0] enabled
+[    0.439741] console [ttyS0] enabled
+[    0.440065] bootconsole [uart8250] disabled
+[    0.440065] bootconsole [uart8250] disabled
+[    0.461590] serial8250.0: ttyS1 at I/O 0x2f8 (irq = 3, base_baud = 115200) is a 16550A
+[    0.483258] serial8250.0: ttyS2 at MMIO 0x1f000900 (irq = 20, base_baud = 230400) is a 16550A
+[    0.558672] brd: module loaded
+[    0.563792] loop: module loaded
+[    0.564938] ata_piix 0000:00:0a.1: enabling device (0000 -> 0001)
+[    0.573702] scsi host0: ata_piix
+[    0.574885] scsi host1: ata_piix
+[    0.575282] ata1: PATA max UDMA/33 cmd 0x1f0 ctl 0x3f6 bmdma 0x10a0 irq 14
+[    0.575607] ata2: PATA max UDMA/33 cmd 0x170 ctl 0x376 bmdma 0x10a8 irq 15
+[    0.578574] 1e000000.flash: Found 1 x32 devices at 0x0 in 32-bit bank. Manufacturer ID 0x000000 Chip ID 0x000000
+[    0.579204] Intel/Sharp Extended Query Table at 0x0031
+[    0.580031] Using buffer write method
+[    0.664035] 3 fixed-partitions partitions found on MTD device 1e000000.flash
+[    0.664296] Creating 3 MTD partitions on "1e000000.flash":
+[    0.664676] 0x000000000000-0x000000100000 : "YAMON"
+[    0.666733] 0x000000100000-0x0000003e0000 : "User FS"
+[    0.667455] 0x0000003e0000-0x000000400000 : "Board Config"
+[    0.668868] mousedev: PS/2 mouse device common for all mice
+[    0.670521] rtc_cmos 70.rtc: registered as rtc0
+[    0.670702] rtc_cmos 70.rtc: alarms up to one day, 242 bytes nvram
+[    0.673452] NET: Registered protocol family 10
+[    0.680254] Segment Routing with IPv6
+[    0.680650] NET: Registered protocol family 17
+[    0.681147] 8021q: 802.1Q VLAN Support v1.8
+[    0.684142] rtc_cmos 70.rtc: setting system clock to 2019-09-04 12:34:31 UTC (1567600471)
+[    0.757035] ata1.00: ATA-7: QEMU HARDDISK, 2.5+, max UDMA/100
+[    0.757227] ata1.00: 5819 sectors, multi 16: LBA48
+[    0.758396] ata2.00: ATAPI: QEMU DVD-ROM, 2.5+, max UDMA/100
+[    0.765708] scsi 0:0:0:0: Direct-Access     ATA      QEMU HARDDISK    2.5+ PQ: 0 ANSI: 5
+[    0.769551] scsi 1:0:0:0: CD-ROM            QEMU     QEMU DVD-ROM     2.5+ PQ: 0 ANSI: 5
+[    0.771799] sd 0:0:0:0: [sda] 5819 512-byte logical blocks: (2.98 MB/2.84 MiB)
+[    0.773665] sd 0:0:0:0: [sda] Write Protect is off
+[    0.774222] sd 0:0:0:0: [sda] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+[    0.783381] sd 0:0:0:0: [sda] Attached SCSI disk
+[    0.826717] sr 1:0:0:0: [sr0] scsi3-mmc drive: 4x/4x cd/rw xa/form2 tray
+[    0.827002] cdrom: Uniform CD-ROM driver Revision: 3.20
+[    0.841444] Freeing unused kernel memory: 6172K
+[    0.841573] This architecture does not have kernel memory protection.
+[    0.841778] Run /init as init process
+[    0.926874] init: Console is alive
+[    0.955898] kmodloader: loading kernel modules from /etc/modules-boot.d/*
+[    0.963486] kmodloader: done loading kernel modules from /etc/modules-boot.d/*
+[    0.974809] init: - preinit
