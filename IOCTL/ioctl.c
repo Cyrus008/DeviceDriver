@@ -12,7 +12,7 @@ Introduction about IOCTL :
   
 ioctl:
 ======
-    	Most drivers additionally need the ability to read and write the device .This ability to perform various types of hardware control via the device driver.
+    Most drivers additionally need the ability to read and write the device .This ability to perform various types of hardware control via the device driver.
    	Most devices can perform operations beyond simple data transfers.The user space must often be able to request,{for example, that the device lock its door,
 	eject its media} report error information, change a baud rate, or self destruct. These operations are usually supported via the ioctl method, which implements 
 	the system call by the same name. In user space, the ioctl system call has the following prototype:
@@ -110,7 +110,7 @@ Choosing the ioctl Commands:
 
 	 	#define SCULL_IOCSQUANTUM 	_IOW(SCULL_IOC_MAGIC, 1, int)
 		#define SCULL_IOCSQSET		_IOW(SCULL_IOC_MAGIC, 2, int)
-	        #define SCULL_IOCTQUANTUM       _IO(SCULL_IOC_MAGIC,3)
+	    #define SCULL_IOCTQUANTUM       _IO(SCULL_IOC_MAGIC,3)
 		#define SCULL_IOCTQSET          _IO(SCULL_IOC_MAGIC,4)
 		#define SCULL_IOCGQUANTUM       _IOR(SCULL_IOC_MAGIC, 5,int)	
 		#define SCULL_IOCGQSET          _IOR(SCULL_IOC_MAGIC, 6,int)
@@ -157,6 +157,29 @@ Choosing the ioctl Commands:
 	           access to.
 		2->The access_ok ensures that the address does not point to kernel-space memory.
 		3->Second, most driver code need not actually call access_ok. The memory-access routines described later take care of that for you
+
+226000 -45000
+
+        Invesment : 150000
+        Sodexo    :  31200
+        =================
+         t        :    181200
+
+        Taxible income: 2530800
+
+        1- {0-2.5}  :  2530800−250000   : 2280800
+        2- {2.5-5}  :   
+        3- {5-10}   :  2166760-433352   : 1733408
+        4- {10-above}: 1733408-520022.4 : 
+
+
+      
+
+
+
+
+
+
 
 
 
