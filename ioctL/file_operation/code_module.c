@@ -1,3 +1,16 @@
+/* Description:
+ * 	Here this is demo code that perform basic operation like open,close read,write.This code does not required sysfs to communicate
+ * 	with the user space.So it did't create any link file under the /dev directory.Here we manually create node of the file using the 
+ * 	mknode and provide the permission for read,write and execute.Instruction is given below:
+ * 	$ cat /proc/devices | tail -50   //This will show your driver name,major and minor number of device
+ *	$ sudo mknod /dev/alphA0 c 240 0 //This will create a device node under /dev 
+ *	$ sudo chmod 665 /dev/alpha0     //This will create read,write,execute permission for device
+ *	# echo "Hello Universe" > /dev/alphA0 //Write some on device 
+ *	# tail -f /var/log/kern.log     //This will show you log of your driver operation
+ *	
+ * */
+
+
 #include <linux/init.h>
 #include <linux/module.h>
 #include <linux/kdev_t.h>
