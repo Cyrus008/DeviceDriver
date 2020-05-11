@@ -21,8 +21,6 @@
 #define DEVICENAME    "alphaNode"
 static int device_num=0;
 static dev_t dev=0;
-static char message[256] = {0};
-static short  size_of_message;
 static struct cdev pdev_cdev;
 static int device_open(struct inode *, struct file *);
 static ssize_t device_read(struct file *, char __user *, size_t, loff_t *);
@@ -39,60 +37,47 @@ static struct file_operations dev_fops =
 
 static int chardevice_init(void)
   {
-	printk(KERN_ALERT "********************************************************\n" );
 	device_num=alloc_chrdev_region(&dev,0,1,DEVICENAME);
     	if(device_num<0)
           {
           	printk(KERN_ALERT "Character Device Number allocation  is failed\n" );
 	  	return -1;
 	  }
-	  printk(KERN_ALERT "Dynamic Major & Minor Number: %d %d",MAJOR(dev),MINOR(dev));
-	  printk(KERN_ALERT "The device's major and minor is generateed \n");
 	  cdev_init(&pdev_cdev,&dev_fops);
-	  printk(KERN_ALERT "The device initalization is done successfully\n");
 	  if((cdev_add(&pdev_cdev, dev,1)<0))
 		{
 		  printk(KERN_ALERT "The device can't be add to the system");
-		  //unregister_chrdev_region(dev,1);
 		}
-	  printk(KERN_ALERT "The device addeding is done successfully\n");
-	  printk(KERN_ALERT "********************************************************\n" );
 	  return 0;
   }
 static void chardevice_exit(void)
   {
-	  	printk(KERN_ALERT "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n" );
 	  	cdev_del(&pdev_cdev);
   		unregister_chrdev_region(dev, 1);
-		printk(KERN_ALERT "Kernel Module deleting Successfully...:::\n");
 		unregister_chrdev(device_num, DEVICENAME);
-		printk(KERN_ALERT "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n" );
   }
 
 static int device_open(struct inode *inode, struct file *file)
 {
-  		printk(KERN_ALERT "Device is opend...");
+  		printk(KERN_ALERT "device_open():\n");
   		return 0;
 }
 
 static ssize_t device_read(struct file *file, char __user *buff, size_t len, loff_t * ppos)
 {
-		printk(KERN_ALERT "Device reading is done :\n");
+		printk(KERN_ALERT "device_read() :\n");
         	return 0;
 }
 
 static ssize_t device_write(struct file *file, const char __user *buff, size_t len, loff_t *ppos)
 {
-		printk(KERN_ALERT "Device write  is done :\n");
-		sprintf(message, "%s", buff, len);
-		size_of_message = strlen(message);
-		printk(KERN_INFO "EBBChar: Received %zu characters from the user\n", len);
-        	return len;
+		printk(KERN_INFO "device_write() :\n");
+        	return 0;
 }
 
 static int device_release(struct inode *inode, struct file *file)
 {
-        	printk(KERN_ALERT "Device relase is done :\n");
+        	printk(KERN_ALERT "device_release():\n");
         	return 0;
 }
 
