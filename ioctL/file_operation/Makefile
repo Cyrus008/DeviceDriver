@@ -1,4 +1,4 @@
-obj-m :=demo02.o
+obj-m :=demo03.o
 
 all:
 	make -C /lib/modules/$(shell uname -r)/build/ M=`pwd` modules
